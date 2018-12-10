@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TwitterDbModelStoreContainer" CdmEntityContainer="TwitterDbEntities1">
+    <EntitySetMapping Name="tm_person">
+      <EntityTypeMapping TypeName="TwitterDbModel.tm_person">
+        <MappingFragment StoreEntitySet="tm_person">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Joined" ColumnName="Joined" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="deactivatedDate" ColumnName="deactivatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tm_tweets">
+      <EntityTypeMapping TypeName="TwitterDbModel.tm_tweets">
+        <MappingFragment StoreEntitySet="tm_tweets">
+          <ScalarProperty Name="tweet_Id" ColumnName="tweet_Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tx_following">
+      <EntityTypeMapping TypeName="TwitterDbModel.tx_following">
+        <MappingFragment StoreEntitySet="tx_following">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="following_Id" ColumnName="following_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="usp_fetch_profile_det" FunctionName="TwitterDbModel.Store.usp_fetch_profile_det">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TwitterDbModel.usp_fetch_profile_det_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Joined" ColumnName="Joined" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="deactivatedDate" ColumnName="deactivatedDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_profile_actions" FunctionName="TwitterDbModel.Store.usp_profile_actions" />
+    <FunctionImportMapping FunctionImportName="usp_signup" FunctionName="TwitterDbModel.Store.usp_signup" />
+    <FunctionImportMapping FunctionImportName="usp_tweets_actions" FunctionName="TwitterDbModel.Store.usp_tweets_actions" />
+    <FunctionImportMapping FunctionImportName="usp_update_profile" FunctionName="TwitterDbModel.Store.usp_update_profile" />
+    <FunctionImportMapping FunctionImportName="usp_validatelogin" FunctionName="TwitterDbModel.Store.usp_validatelogin" />
+    <FunctionImportMapping FunctionImportName="usp_follow_profile" FunctionName="TwitterDbModel.Store.usp_follow_profile" />
+  </EntityContainerMapping>
+</Mapping>

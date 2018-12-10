@@ -1,0 +1,12 @@
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\DatabaseAccess\bin\Debug\DatabaseAccess.dll.config
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\DatabaseAccess\bin\Debug\DatabaseAccess.dll
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\DatabaseAccess\bin\Debug\DatabaseAccess.pdb
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\DatabaseAccess\bin\Debug\CommonModel.dll
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\DatabaseAccess\bin\Debug\EntityFramework.dll
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\DatabaseAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\DatabaseAccess\bin\Debug\CommonModel.pdb
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\DatabaseAccess\bin\Debug\EntityFramework.xml
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\DatabaseAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\DatabaseAccess\obj\Debug\DatabaseAccess.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\DatabaseAccess\obj\Debug\DatabaseAccess.dll
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\DatabaseAccess\obj\Debug\DatabaseAccess.pdb

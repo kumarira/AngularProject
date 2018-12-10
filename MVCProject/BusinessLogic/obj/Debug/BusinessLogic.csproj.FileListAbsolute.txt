@@ -1,0 +1,12 @@
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\BusinessLogic\bin\Debug\BusinessLogic.dll
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\BusinessLogic\bin\Debug\BusinessLogic.pdb
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\BusinessLogic\bin\Debug\CommonModel.dll
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\BusinessLogic\bin\Debug\DatabaseAccess.dll
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\BusinessLogic\bin\Debug\EntityFramework.dll
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\BusinessLogic\bin\Debug\CommonModel.pdb
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\BusinessLogic\bin\Debug\DatabaseAccess.pdb
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\BusinessLogic\bin\Debug\DatabaseAccess.dll.config
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\BusinessLogic\bin\Debug\EntityFramework.xml
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\BusinessLogic\obj\Debug\BusinessLogic.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\BusinessLogic\obj\Debug\BusinessLogic.dll
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\BusinessLogic\obj\Debug\BusinessLogic.pdb

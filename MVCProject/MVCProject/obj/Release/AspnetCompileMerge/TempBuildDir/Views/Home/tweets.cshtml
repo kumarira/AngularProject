@@ -1,0 +1,67 @@
+﻿@model CommonModel.IndexViewtweet
+
+
+@using (Html.BeginForm( "tweets", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>tm_tweets</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })       
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Details.message, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Details.message, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Details.message, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Details.tweet_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Details.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Details.message)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Details.CreatedDate)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.List)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tweet_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.message)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>                                    
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+        </table>
+</div>

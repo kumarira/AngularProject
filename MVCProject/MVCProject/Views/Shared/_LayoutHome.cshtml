@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Twitter Clone Appp</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+
+    <style>
+
+        body {
+            padding-bottom: 40px;
+            padding-top: 60px;
+        }
+
+        .sidebar-nav-fixed {
+            width: 14%;
+        }
+        input {
+            -moz-border-radius: 15px;
+            border-radius: 15px;
+            border: solid 1px black;
+            padding: 5px;
+        }
+    </style> 
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Twitter Clone Application</a>
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+              
+                <li> <a href="Home/Index">  Home</a>   </li> 
+                <li> <a href="Profile/Index">  Profile</a> </li> 
+                <li><a href="Home/Logout"><span class="glyphicon glyphicon-log-out"></span> LogOut</a> </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"> 
+               
+
+                <div class="sidebar-nav-fixed affix">
+                    <div class="well">
+                        <ul class="nav ">  
+                            <li>
+                                <div class="input-group changethisone">
+                                    <input type="text" class="form-control" placeholder="" />
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </span>
+                                </div>
+                            </li>
+
+                            <li>
+                                <a href="#">@ViewBag.tweetsCount Tweets</a>
+                            </li>
+                            <li >
+                                <a href="#">@ViewBag.followerCount followers</a>
+                            </li>
+                            <li>
+                                <a href="#">@ViewBag.followingCount following </a>
+                            </li> 
+                        </ul>
+                    </div>                  
+                </div>               
+            </div>
+           
+            <div class="col-md-10">
+                <div class="jumbotron">
+                  Welcome <b>@Session["UserID"].ToString()</b>   
+                   @RenderBody()
+                </div>
+
+            </div>
+            </div>
+        </div> 
+            <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+            <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

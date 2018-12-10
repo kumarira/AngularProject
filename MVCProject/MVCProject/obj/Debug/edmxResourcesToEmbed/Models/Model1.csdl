@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TwitterDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tm_person">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="Binary" MaxLength="64" FixedLength="true" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Joined" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="active" Type="Boolean" Nullable="false" />
+    <Property Name="deactivatedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tx_following" Relationship="Self.FK__tx_follow__follo__276EDEB3" FromRole="tm_person" ToRole="tx_following" />
+    <NavigationProperty Name="tx_following1" Relationship="Self.FK__tx_follow__UserI__267ABA7A" FromRole="tm_person" ToRole="tx_following" />
+    <NavigationProperty Name="tm_tweets" Relationship="TwitterDbModel.FK__tm_tweets__UserI__2C3393D0" FromRole="tm_person" ToRole="tm_tweets" />
+  </EntityType>
+  <EntityType Name="tm_tweets">
+    <Key>
+      <PropertyRef Name="tweet_Id" />
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="message" />
+      <PropertyRef Name="CreatedDate" />
+    </Key>
+    <Property Name="tweet_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="message" Type="String" MaxLength="140" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tm_person" Relationship="TwitterDbModel.FK__tm_tweets__UserI__2C3393D0" FromRole="tm_tweets" ToRole="tm_person" />
+  </EntityType>
+  <EntityType Name="tx_following">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="following_Id" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tm_person" Relationship="Self.FK__tx_follow__follo__276EDEB3" FromRole="tx_following" ToRole="tm_person" />
+    <NavigationProperty Name="tm_person1" Relationship="Self.FK__tx_follow__UserI__267ABA7A" FromRole="tx_following" ToRole="tm_person" />
+  </EntityType>
+  <Association Name="FK__tx_follow__follo__276EDEB3">
+    <End Role="tm_person" Type="Self.tm_person" Multiplicity="0..1" />
+    <End Role="tx_following" Type="Self.tx_following" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tm_person">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tx_following">
+        <PropertyRef Name="following_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tx_follow__UserI__267ABA7A">
+    <End Role="tm_person" Type="Self.tm_person" Multiplicity="0..1" />
+    <End Role="tx_following" Type="Self.tx_following" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tm_person">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tx_following">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TwitterDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tm_person" EntityType="Self.tm_person" />
+    <EntitySet Name="tm_tweets" EntityType="Self.tm_tweets" />
+    <EntitySet Name="tx_following" EntityType="Self.tx_following" />
+    <AssociationSet Name="FK__tx_follow__follo__276EDEB3" Association="Self.FK__tx_follow__follo__276EDEB3">
+      <End Role="tm_person" EntitySet="tm_person" />
+      <End Role="tx_following" EntitySet="tx_following" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tx_follow__UserI__267ABA7A" Association="Self.FK__tx_follow__UserI__267ABA7A">
+      <End Role="tm_person" EntitySet="tm_person" />
+      <End Role="tx_following" EntitySet="tx_following" />
+    </AssociationSet>
+    <FunctionImport Name="usp_fetch_profile_det" ReturnType="Collection(TwitterDbModel.usp_fetch_profile_det_Result)">
+      <Parameter Name="pUserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_profile_actions">
+      <Parameter Name="pUserID" Mode="In" Type="String" />
+      <Parameter Name="pAction" Mode="In" Type="String" />
+      <Parameter Name="pEmailId" Mode="In" Type="String" />
+      <Parameter Name="pFullName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_signup">
+      <Parameter Name="pUserID" Mode="In" Type="String" />
+      <Parameter Name="pPassword" Mode="In" Type="String" />
+      <Parameter Name="pEmailId" Mode="In" Type="String" />
+      <Parameter Name="pFullName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_tweets_actions">
+      <Parameter Name="pUserID" Mode="In" Type="String" />
+      <Parameter Name="pAction" Mode="In" Type="String" />
+      <Parameter Name="pTweet_Id" Mode="In" Type="Int32" />
+      <Parameter Name="pMesage" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_update_profile">
+      <Parameter Name="pUserID" Mode="In" Type="String" />
+      <Parameter Name="pEmailId" Mode="In" Type="String" />
+      <Parameter Name="pFullName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_validatelogin">
+      <Parameter Name="pUserID" Mode="In" Type="String" />
+      <Parameter Name="pPassword" Mode="In" Type="String" />
+      <Parameter Name="responseMessage" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <AssociationSet Name="FK__tm_tweets__UserI__2C3393D0" Association="TwitterDbModel.FK__tm_tweets__UserI__2C3393D0">
+      <End Role="tm_person" EntitySet="tm_person" />
+      <End Role="tm_tweets" EntitySet="tm_tweets" />
+    </AssociationSet>
+    <FunctionImport Name="ProfileActions">
+      <Parameter Name="pUserID" Mode="In" Type="String" />
+      <Parameter Name="pAction" Mode="In" Type="String" />
+      <Parameter Name="pEmailId" Mode="In" Type="String" />
+      <Parameter Name="pFullName" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="usp_fetch_profile_det_Result">
+    <Property Type="String" Name="UserId" Nullable="false" MaxLength="25" />
+    <Property Type="Binary" Name="Password" Nullable="false" MaxLength="64" />
+    <Property Type="String" Name="FullName" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="EmailId" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="Joined" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="active" Nullable="false" />
+    <Property Type="DateTime" Name="deactivatedDate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="usp_profile_actions_Result">
+    <Property Type="String" Name="UserId" Nullable="false" MaxLength="25" />
+    <Property Type="Binary" Name="Password" Nullable="false" MaxLength="64" />
+    <Property Type="String" Name="FullName" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="EmailId" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="Joined" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="active" Nullable="false" />
+    <Property Type="DateTime" Name="deactivatedDate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="usp_tweets_actions_Result">
+    <Property Type="Int32" Name="tweet_Id" Nullable="false" />
+    <Property Type="String" Name="UserId" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="message" Nullable="false" MaxLength="140" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+  </ComplexType>
+  <Association Name="FK__tm_tweets__UserI__2C3393D0">
+    <End Type="TwitterDbModel.tm_person" Role="tm_person" Multiplicity="1" />
+    <End Type="TwitterDbModel.tm_tweets" Role="tm_tweets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tm_person">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tm_tweets">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

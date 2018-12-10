@@ -1,0 +1,5 @@
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\CommonModel\bin\Release\CommonModel.dll
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\CommonModel\bin\Release\CommonModel.pdb
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\CommonModel\obj\Release\CommonModel.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\CommonModel\obj\Release\CommonModel.dll
+C:\Users\Admin\Desktop\FSE\Dev\MVCProject\CommonModel\obj\Release\CommonModel.pdb

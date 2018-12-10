@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TwitterDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tm_person">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Password" Type="binary" MaxLength="64" Nullable="false" />
+    <Property Name="FullName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="EmailId" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Joined" Type="datetime" Nullable="false" />
+    <Property Name="active" Type="bit" Nullable="false" />
+    <Property Name="deactivatedDate" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TwitterDb.dbo.tm_tweets' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tm_tweets">
+    <Key>
+      <PropertyRef Name="tweet_Id" />
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="message" />
+      <PropertyRef Name="CreatedDate" />
+    </Key>
+    <Property Name="tweet_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="message" Type="varchar" MaxLength="140" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TwitterDb.dbo.tx_following' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tx_following">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="varchar" MaxLength="25" />
+    <Property Name="following_Id" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <Association Name="FK__tm_tweets__UserI__2C3393D0">
+    <End Role="tm_person" Type="Self.tm_person" Multiplicity="1" />
+    <End Role="tm_tweets" Type="Self.tm_tweets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tm_person">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tm_tweets">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tx_follow__follo__2F10007B">
+    <End Role="tm_person" Type="Self.tm_person" Multiplicity="0..1" />
+    <End Role="tx_following" Type="Self.tx_following" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tm_person">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tx_following">
+        <PropertyRef Name="following_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tx_follow__UserI__2E1BDC42">
+    <End Role="tm_person" Type="Self.tm_person" Multiplicity="0..1" />
+    <End Role="tx_following" Type="Self.tx_following" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tm_person">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tx_following">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="usp_fetch_profile_det" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pUserID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_follow_profile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pProfileId" Type="varchar" Mode="In" />
+    <Parameter Name="pUserID" Type="varchar" Mode="In" />
+    <Parameter Name="pFollow" Type="char" Mode="In" />
+  </Function>
+  <Function Name="usp_profile_actions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pUserID" Type="varchar" Mode="In" />
+    <Parameter Name="pAction" Type="char" Mode="In" />
+    <Parameter Name="pEmailId" Type="varchar" Mode="In" />
+    <Parameter Name="pFullName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_signup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pUserID" Type="varchar" Mode="In" />
+    <Parameter Name="pPassword" Type="varchar" Mode="In" />
+    <Parameter Name="pEmailId" Type="varchar" Mode="In" />
+    <Parameter Name="pFullName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_tweets_actions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pUserID" Type="varchar" Mode="In" />
+    <Parameter Name="pAction" Type="char" Mode="In" />
+    <Parameter Name="pTweet_Id" Type="int" Mode="In" />
+    <Parameter Name="pMesage" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_update_profile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pUserID" Type="varchar" Mode="In" />
+    <Parameter Name="pEmailId" Type="varchar" Mode="In" />
+    <Parameter Name="pFullName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_validatelogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pUserID" Type="varchar" Mode="In" />
+    <Parameter Name="pPassword" Type="varchar" Mode="In" />
+    <Parameter Name="responseMessage" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <EntityContainer Name="TwitterDbModelStoreContainer">
+    <EntitySet Name="tm_person" EntityType="Self.tm_person" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tm_tweets" EntityType="Self.tm_tweets" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tm_tweets].[tweet_Id] AS [tweet_Id], 
+    [tm_tweets].[UserId] AS [UserId], 
+    [tm_tweets].[message] AS [message], 
+    [tm_tweets].[CreatedDate] AS [CreatedDate]
+    FROM [dbo].[tm_tweets] AS [tm_tweets]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tx_following" EntityType="Self.tx_following" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tx_following].[Id] AS [Id], 
+    [tx_following].[UserId] AS [UserId], 
+    [tx_following].[following_Id] AS [following_Id]
+    FROM [dbo].[tx_following] AS [tx_following]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__tm_tweets__UserI__2C3393D0" Association="Self.FK__tm_tweets__UserI__2C3393D0">
+      <End Role="tm_person" EntitySet="tm_person" />
+      <End Role="tm_tweets" EntitySet="tm_tweets" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tx_follow__follo__2F10007B" Association="Self.FK__tx_follow__follo__2F10007B">
+      <End Role="tm_person" EntitySet="tm_person" />
+      <End Role="tx_following" EntitySet="tx_following" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tx_follow__UserI__2E1BDC42" Association="Self.FK__tx_follow__UserI__2E1BDC42">
+      <End Role="tm_person" EntitySet="tm_person" />
+      <End Role="tx_following" EntitySet="tx_following" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
