@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PODbModelStoreContainer" CdmEntityContainer="PODbEntities">
+    <EntitySetMapping Name="ITEMs">
+      <EntityTypeMapping TypeName="PODbModel.ITEM">
+        <MappingFragment StoreEntitySet="ITEM">
+          <ScalarProperty Name="ITCODE" ColumnName="ITCODE" />
+          <ScalarProperty Name="ITDESC" ColumnName="ITDESC" />
+          <ScalarProperty Name="ITRATE" ColumnName="ITRATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PODETAILs">
+      <EntityTypeMapping TypeName="PODbModel.PODETAIL">
+        <MappingFragment StoreEntitySet="PODETAIL">
+          <ScalarProperty Name="PONO" ColumnName="PONO" />
+          <ScalarProperty Name="ITCODE" ColumnName="ITCODE" />
+          <ScalarProperty Name="QTY" ColumnName="QTY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="POMASTERs">
+      <EntityTypeMapping TypeName="PODbModel.POMASTER">
+        <MappingFragment StoreEntitySet="POMASTER">
+          <ScalarProperty Name="PONO" ColumnName="PONO" />
+          <ScalarProperty Name="PODATE" ColumnName="PODATE" />
+          <ScalarProperty Name="SUPLNO" ColumnName="SUPLNO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SUPPLIERs">
+      <EntityTypeMapping TypeName="PODbModel.SUPPLIER">
+        <MappingFragment StoreEntitySet="SUPPLIER">
+          <ScalarProperty Name="SUPLNO" ColumnName="SUPLNO" />
+          <ScalarProperty Name="SUPLNAME" ColumnName="SUPLNAME" />
+          <ScalarProperty Name="SUPLADDR" ColumnName="SUPLADDR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="usp_addupdate_PO" FunctionName="PODbModel.Store.usp_addupdate_PO" />
+  </EntityContainerMapping>
+</Mapping>

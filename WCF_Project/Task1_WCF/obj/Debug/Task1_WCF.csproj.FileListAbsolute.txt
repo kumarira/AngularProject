@@ -1,0 +1,6 @@
+C:\Users\Admin\Desktop\FSE\Dev\WCF_Project\Task1_WCF\bin\Debug\Task1_WCF.dll.config
+C:\Users\Admin\Desktop\FSE\Dev\WCF_Project\Task1_WCF\bin\Debug\Task1_WCF.dll
+C:\Users\Admin\Desktop\FSE\Dev\WCF_Project\Task1_WCF\bin\Debug\Task1_WCF.pdb
+C:\Users\Admin\Desktop\FSE\Dev\WCF_Project\Task1_WCF\obj\Debug\Task1_WCF.dll
+C:\Users\Admin\Desktop\FSE\Dev\WCF_Project\Task1_WCF\obj\Debug\Task1_WCF.pdb
+C:\Users\Admin\Desktop\FSE\Dev\WCF_Project\Task1_WCF\obj\Debug\Task1_WCF.csprojResolveAssemblyReference.cache

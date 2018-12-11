@@ -1,0 +1,85 @@
+﻿@model IEnumerable<ClientApp.Models.Podata>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>  
+@{
+    ViewBag.Title = "Purchase Order";
+}
+
+<script type="text/javascript">  
+    function CheckMe(data) {
+        var Ponumber = $(data).closest('tr').find('td:nth-child(1)').text();          
+      
+        var Podata = new Object();
+        Podata.Action = "D";
+        Podata.PONO = Ponumber;       
+        $.ajax({
+            async: false,
+            url: "http://localhost:51543/api/senddata",
+            type: "Post",
+            dataType: 'json',
+            contentType: "application/json",
+            data: JSON.stringify(Podata),
+            success: function (data) {
+                alert(Ponumber +" PO Deleted Successfully");
+            },
+            error: function (msg) {   alert("Error please try again"); }
+        });
+
+        window.location = '/PO/index';
+    }
+    $(document).ready(function () {       
+        
+        $.ajax({
+            url: "http://localhost:51543/api/alldata",
+            type: "Get",
+            dataType: 'json',  
+            success: function (data) {
+             
+                for (var i = 0; i < data.length; i++) {
+
+                    var tr = "<tr><td><span>" + data[i].PONO
+                        + "</span></td><td>"
+                        + data[i].PODATE + "</td><td>"
+                        + data[i].SUPLNO + "</td><td>"
+                        + data[i].SUPname + "</td><td>"
+                        + data[i].ITCODE + "</td><td>"
+                        + data[i].ITname + "</td><td>"
+                        + data[i].ITrate + "</td><td>"
+                        + data[i].QTY + "</td><td>"
+                        + data[i].totacost + "</td><td>"
+                        + "<input type= 'button' id= '" + data[i].PONO + "' onclick= 'CheckMe(" + data[i].PONO+")' value= 'Delete' > </td ></tr > "
+                    $("table").append(tr);  
+
+                   
+                }
+                
+            },
+            error: function (msg) { alert(msg); }
+        });
+
+       
+    });
+
+</script>
+<h2> Purchase Order Master
+</h2>
+
+<p>
+    @Html.ActionLink("Create New Purchase Order", "Create")
+</p>
+<table class="table table-bordered table-condensed table-hover table-striped">
+    <thead>
+        <tr>
+            <th>PONO</th>
+            <th>PODATE</th>           
+            <th>SUPLNO</th> 
+            <th>SUPname</th>
+            <th>ITCODE</th>
+            <th>ITname</th>
+            <th>ITrate</th>
+            <th>QTY</th>            
+            <th>totacost</th> 
+            <th>Action</th> 
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>  

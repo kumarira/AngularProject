@@ -1,0 +1,60 @@
+﻿@model ClientApp.Models.Podata
+
+@{
+  //  ViewBag.Title = "Create";
+}
+
+<h2>Create New Purchase Order
+</h2> 
+
+@using (Html.BeginForm("Create", "PO", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" }) 
+         
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SUPLNO, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">               
+                
+                @Html.DropDownList("DropDownListSuplier",  Model.suppliers ,"Choose supplier")
+                @Html.ValidationMessageFor(model => model.SUPLNO, "", new { @class = "text-danger" })
+            </div>
+        </div>
+         
+        <div class="form-group">
+            @Html.LabelFor(model => model.ITCODE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("DropDownListitems", Model.items, "Choose items")
+                @*@Html.DropDownListFor(model => model.items, new SelectList(Model.items, "ITCODE", "ITDESC"), "Choose items", new { @id = "DropDownListitems" })*@                
+                @Html.ValidationMessageFor(model => model.ITCODE, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.QTY, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.QTY, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.QTY, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

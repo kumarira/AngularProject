@@ -1,0 +1,9 @@
+C:\Users\Admin\Desktop\FSE\Dev\WCF_Project\HostApp\bin\Debug\HostApp.exe.config
+C:\Users\Admin\Desktop\FSE\Dev\WCF_Project\HostApp\bin\Debug\HostApp.exe
+C:\Users\Admin\Desktop\FSE\Dev\WCF_Project\HostApp\bin\Debug\HostApp.pdb
+C:\Users\Admin\Desktop\FSE\Dev\WCF_Project\HostApp\obj\Debug\HostApp.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Desktop\FSE\Dev\WCF_Project\HostApp\obj\Debug\HostApp.exe
+C:\Users\Admin\Desktop\FSE\Dev\WCF_Project\HostApp\obj\Debug\HostApp.pdb
+C:\Users\Admin\Desktop\FSE\Dev\WCF_Project\HostApp\bin\Debug\Task1_WCF.dll
+C:\Users\Admin\Desktop\FSE\Dev\WCF_Project\HostApp\bin\Debug\Task1_WCF.pdb
+C:\Users\Admin\Desktop\FSE\Dev\WCF_Project\HostApp\bin\Debug\Task1_WCF.dll.config
