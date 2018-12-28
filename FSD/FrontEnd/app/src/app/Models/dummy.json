@@ -1,0 +1,16 @@
+{
+"testjson": [
+    {
+        "name": "ABC",
+        "desc": "ABC"
+    },
+    {
+        "name": "XYZ",
+        "desc": "XYZ"
+    },
+    {
+        "name": "PQR",
+        "desc": "PQR"
+    }
+ ]
+}
